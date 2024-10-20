@@ -2,6 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import jest from "eslint-plugin-jest";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import importPlugin from "eslint-plugin-import"; // Импортируем плагин
 
 export default [
   {
@@ -10,8 +11,10 @@ export default [
   pluginJs.configs.recommended,
   eslintPluginPrettierRecommended,
   {
+    plugins: { import: importPlugin }, // Добавляем плагин
     rules: {
       "no-unused-vars": "warn",
+      "import/extensions": ["error", "always", { js: "never", jsx: "never" }], // Правила для расширений
     },
   },
   {
