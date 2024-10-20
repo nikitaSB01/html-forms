@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const popoverBtn = document.getElementById("popover-btn");
+document.addEventListener('DOMContentLoaded', () => {
+  const popoverBtn = document.getElementById('popover-btn');
 
   // Создание элемента popover
-  const popover = document.createElement("div");
-  popover.className = "popover";
+  const popover = document.createElement('div');
+  popover.className = 'popover';
 
   // Установка HTML для заголовка и содержимого popover
   popover.innerHTML = `
@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Функция для переключения видимости popover
   function togglePopover() {
-    if (popover.style.display === "block") {
-      popover.style.display = "none";
+    if (popover.style.display === 'block') {
+      popover.style.display = 'none';
     } else {
-      popover.style.display = "block";
+      popover.style.display = 'block';
 
       // Получение позиции и размера кнопки
       const rect = popoverBtn.getBoundingClientRect();
@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Добавление обработчика событий для кнопки
-  popoverBtn.addEventListener("click", togglePopover);
+  popoverBtn.addEventListener('click', togglePopover);
 
   // Закрытие popover при клике вне его области
-  document.addEventListener("click", (event) => {
+  document.addEventListener('click', (event) => {
     if (!popover.contains(event.target) && event.target !== popoverBtn) {
-      popover.style.display = "none";
+      popover.style.display = 'none';
     }
   });
 });
