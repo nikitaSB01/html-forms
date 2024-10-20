@@ -1,0 +1,13 @@
+# licenses.txt
+
+Источники изображений:
+
+1. credit-card-mastercard.png — https://www.freeimages.com;
+2. creditcard-american-express.png — https://www.freeimages.com;
+3. diners-club.png —https://www.freeimages.com;
+3. discover-curved-128px.png — https://www.freeimages.com;
+3. jcb.png — https://www.freeimages.com;
+3. mir.svg — https://www.freeimages.com;
+3. visa-curved.png — https://www.freeimages.com;
+
+Информация о лицензиях и источниках других медиафайлов используется в соответствии с их лицензиями.
