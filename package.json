@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest --testPathPattern=./src/",  
+    "test": "jest --testPathPattern=./src/",
     "coverage": "jest --coverage",
     "e2e": "jest --testPathPattern=./e2e/ --runInBand",
     "doc": "jsdoc -c jsdoc.conf.json",
@@ -17,7 +17,7 @@
     "preshow:doc": "npm run doc",
     "show:doc": "live-server doc",
     "preshow:dist": "npm run build",
-    "show:dist": "live-server dist"  
+    "show:dist": "live-server dist"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/nikitaSB01/starter_version/issues"
   },
-    "homepage": "https://github.com/nikitaSB01/starter_version#readme",
+  "homepage": "https://github.com/nikitaSB01/starter_version#readme",
   "devDependencies": {
     "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.5",
@@ -39,7 +39,7 @@
     "css-loader": "^7.1.2",
     "eslint": "8.57",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.5.0",
     "file-loader": "^6.2.0",
     "html-loader": "^5.0.0",

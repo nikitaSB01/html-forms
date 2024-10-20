@@ -19,7 +19,7 @@
         "import/extensions": ["error", "ignorePackages", {
             "js": "never",
             "jsx": "never"
-          }],
+        }],
         "no-restricted-syntax": [
             "error",
             "LabeledStatement",
