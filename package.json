@@ -1,6 +1,6 @@
 {
-  "name": "starter_version",
-  "description": "https://github.com/nikitaSB01/starter_version.git",
+  "name": "html-forms",
+  "description": "https://github.com/nikitaSB01/html-forms.git",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nikitaSB01/starter_version.git"
+    "url": "git+https://github.com/nikitaSB01/html-forms.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nikitaSB01/starter_version/issues"
+    "url": "https://github.com/nikitaSB01/html-forms/issues"
   },
-  "homepage": "https://github.com/nikitaSB01/starter_version#readme",
+  "homepage": "https://github.com/nikitaSB01/html-forms#readme",
   "devDependencies": {
     "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.5",
