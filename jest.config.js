@@ -1,3 +1,4 @@
 module.exports = {
-  testEnvironment: 'jest-environment-jsdom',
+  preset: 'jest-puppeteer',
+  testMatch: ['**/src/js/_tests_/popover.test.js'],
 };
