@@ -1,5 +1,4 @@
 import puppeteer from 'puppeteer';
-import fs from 'fs';
 
 describe('Popover Tests', () => {
   let browser;
@@ -7,27 +6,11 @@ describe('Popover Tests', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false, // Включите headless режим для быстроты тестов
-      slowMo: 100, // Замедление для лучшей визуализации при отладке
-      devtools: true, // Для отладки
+      headless: false, // Set to true for CI/CD
+      slowMo: 100, // Slow down operations for easier debugging
     });
     page = await browser.newPage();
-    const appScript = fs.readFileSync('src/js/app.js', 'utf8');
-
-    // Устанавливаем HTML-контент для страницы
-    await page.setContent(`
-      <html>
-        <head>
-          <link rel="stylesheet" href="css/style.css">
-        </head>
-        <body>
-          <button id="popover-btn" class="btn">Показать Popover</button>
-          <script>
-            ${appScript}
-          </script>
-        </body>
-      </html>
-    `);
+    await page.goto('http://localhost:9000');
   });
 
   afterAll(async () => {
@@ -35,21 +18,50 @@ describe('Popover Tests', () => {
   });
 
   test('Popover should open on button click', async () => {
-    await page.click('#popover-btn'); // Клик по кнопке, чтобы открыть Popover
-    const popover = await page.$('.popover'); // Найдем элемент popover
+    const buttonExists = await page.$('#popover-btn');
+    expect(buttonExists).not.toBeNull(); // Check if the button exists
+
+    await page.click('#popover-btn'); // Click the button
+
+    const popover = await page.$('.popover'); // Find the popover element
     const isVisible = await popover.evaluate(
-      (el) => el.style.display === 'block', // Проверяем, что он видим
+      (el) => window.getComputedStyle(el).display !== 'none', // Check if it's visible
     );
     expect(isVisible).toBe(true);
   });
 
   test('Popover should close when clicking outside', async () => {
-    await page.click('#popover-btn'); // Открываем popover
-    await page.click('body'); // Кликаем вне popover
+    // Open popover
+    await page.click('#popover-btn'); // Click the button
+
+    // Wait until the popover is visible
+    await page.waitForSelector('.popover', { visible: true });
+
+    // Find the popover element once
     const popover = await page.$('.popover');
-    const isVisible = await popover.evaluate(
-      (el) => el.style.display === 'block', // Проверяем, что он должен быть скрыт
+
+    // Check that the popover is visible
+    const isVisibleBefore = await popover.evaluate(
+      (el) => window.getComputedStyle(el).display !== 'none',
     );
-    expect(isVisible).toBe(false);
-  });
+    console.log('Popover visible before click:', isVisibleBefore);
+    expect(isVisibleBefore).toBe(true);
+
+    // Click outside the popover
+    await page.click('body'); // Click the body to close the popover
+
+    // Wait for the popover to become invisible
+    await page.waitForFunction(() => {
+      const popoverElement = document.querySelector('.popover');
+      return popoverElement && window.getComputedStyle(popoverElement).display === 'none';
+    });
+
+    // Check that the popover is hidden
+    const isVisibleAfter = await popover.evaluate(
+      (el) => window.getComputedStyle(el).display === 'none',
+    );
+
+    console.log('Popover visible after click:', isVisibleAfter);
+    expect(isVisibleAfter).toBe(true);
+  }, 20000); // Increase timeout if necessary
 });
