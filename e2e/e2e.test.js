@@ -23,11 +23,11 @@ describe('Popover Tests', () => {
       server.on('error', reject);
     });
 
-    // Запускаем браузер Puppeteer
+  /*   // Запускаем браузер Puppeteer
     browser = await puppeteer.launch({
       headless: true, // Режим без интерфейса
       slowMo: 100, // Замедление для наглядности
-    });
+    }); */
 
     // Создаем новую страницу
     page = await browser.newPage();
