@@ -6,7 +6,7 @@ describe('Popover Tests', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       slowMo: 100,
     });
     page = await browser.newPage();
@@ -18,23 +18,37 @@ describe('Popover Tests', () => {
   });
 
   test('Popover should open on button click', async () => {
+    await page.goto('http://localhost:9000');
+
+    // Проверяем, что кнопка существует
     const buttonExists = await page.$('#popover-btn');
-    expect(buttonExists).not.toBeNull(); // кнопка существует
+    expect(buttonExists).not.toBeNull();
 
-    await page.click('#popover-btn'); // Клик по кнопке
+    // Кликаем по кнопке
+    await page.click('#popover-btn');
 
-    const popover = await page.$('.popover'); // Найти элемент поповера
+    // Ждем, пока popover появится
+    const popover = await page.$('.popover');
+    await page.waitForSelector('.popover', { visible: true }); // ждем, пока поповер станет видимым
+
+    // Проверяем, что popover видим
     const isVisible = await popover.evaluate(
-      (el) => window.getComputedStyle(el).display !== 'none', // Проверяем, что он видим
+      (el) => window.getComputedStyle(el).display !== 'none',
     );
     expect(isVisible).toBe(true);
-  });
+  }, 10000);
 
   test('Popover should close when clicking outside', async () => {
-    await page.click('#popover-btn'); // Открываем popover
-    await page.waitForSelector('.popover'); // Ждем, пока popover появится
+    await page.goto('http://localhost:9000');
 
+    // Проверяем, что кнопка существует
+    const buttonExists = await page.$('#popover-btn');
+    expect(buttonExists).not.toBeNull();
+    // Открываем popover
+    await page.click('#popover-btn');
     const popover = await page.$('.popover'); // Находим элемент popover
+    await page.waitForSelector('.popover', { visible: true }); // Ждем, пока popover появится
+
     const isVisibleBefore = await popover.evaluate(
       (el) => window.getComputedStyle(el).display !== 'none',
     );
@@ -53,5 +67,5 @@ describe('Popover Tests', () => {
     );
     console.log('Popover visible after click:', isVisibleAfter); // Отладочный вывод
     expect(isVisibleAfter).toBe(true); // Убеждаемся, что popover скрыт
-  });
+  }, 10000);
 });
