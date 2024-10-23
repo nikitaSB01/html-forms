@@ -11,5 +11,5 @@
         "LabeledStatement",
         "WithStatement"
       ]
-    }
+    }, "no-console": "off", // отключает правило для console
   }

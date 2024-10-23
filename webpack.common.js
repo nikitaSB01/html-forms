@@ -3,18 +3,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  devServer: {
-    port: 9000,
-    static: {
-      directory: path.join(__dirname, 'dist'), // Заменили contentBase на static
-    },
-    open: true, // Автоматическое открытие браузера
-    hot: true, // Горячая перезагрузка
-  },
-  devtool: 'source-map',
+  target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js', // Убедитесь, что правильный файл js
+    publicPath: '',
   },
   module: {
     rules: [
@@ -37,6 +29,10 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
@@ -45,8 +41,8 @@ module.exports = {
       filename: './index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: './src/css/style.css',
-      chunkFilename: './style.css',
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
 };
