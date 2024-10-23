@@ -3,18 +3,30 @@ import puppeteer from 'puppeteer';
 describe('Popover Tests', () => {
   let browser;
   let page;
+  let server = null;
+  const baseUrl = "http://localhost:9000";
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({
+    server = fork(`${__dirname}/e2e.server.js`);
+    await new Promise((resolve, reject) => {
+        if(server.connected) {
+            process.send('ok');
+            resolve()
+        } else {
+            reject();
+        }
+        
+    /* browser = await puppeteer.launch({
       headless: true,
       slowMo: 100,
     });
     page = await browser.newPage();
-    await page.goto('http://localhost:9000');
+    await page.goto('http://localhost:9000'); */
   });
 
   afterAll(async () => {
     await browser.close();
+    server.kill();
   });
 
   test('Popover should open on button click', async () => {
