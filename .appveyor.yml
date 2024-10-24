@@ -11,6 +11,7 @@ cache: node_modules  # кеширование
 
 install:
   - yarn  # команда установки зависимостей
+  - npx puppeteer browsers install chrome
 
 build: off  # отключаем встроенную в appveyor систему сборки
 
