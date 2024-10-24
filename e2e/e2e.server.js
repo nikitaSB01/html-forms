@@ -1,6 +1,6 @@
-const Webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.dev');
+const Webpack = require("webpack");
+const WebpackDevServer = require("webpack-dev-server");
+const config = require("../webpack.dev");
 
 const PORT = 9000;
 
@@ -14,7 +14,7 @@ const runServer = async () => {
   
   // Отправляем сообщение "ok" после старта сервера
   if (process.send) {
-    process.send('ok');
+    process.send("ok");
   }
 };
 

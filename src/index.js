@@ -1,4 +1,3 @@
-import './css/style.css';
+import "./css/style.css";
 
-// eslint-disable-next-line import/extensions
-import './js/app';
+import "./js/app";
