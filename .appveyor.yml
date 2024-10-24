@@ -18,8 +18,8 @@ build_script:
   - yarn build   # команда сборки
 
 test_script:
-  - yarn lint && yarn test
-  - yarn e2e
+  - yarn lint && yarn test  # скрипт для обычных тестов
+  - yarn e2e                # выполняем e2e тесты
 
 deploy_script:  # скрипт развёртывания
   - git config --global credential.helper store
