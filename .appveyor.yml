@@ -19,8 +19,6 @@ build_script:
 
 test_script:
   - yarn lint && yarn test  # скрипт для обычных тестов
-  - yarn start &            # запускаем dev-сервер
-  - sleep 10
   - yarn e2e                # выполняем e2e тесты
 
 deploy_script:  # скрипт развёртывания
